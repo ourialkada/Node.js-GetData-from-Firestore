@@ -1,0 +1,19 @@
+{
+  "name": "nodefirebasefunctions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Ouri Alkada",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/storage": "^3.1.0",
+    "express": "^4.17.1",
+    "firebase": "^6.4.0",
+    "firebase-admin": "^8.3.0",
+    "multer": "^1.4.2"
+  }
+}
