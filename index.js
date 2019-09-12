@@ -26,6 +26,8 @@ app.get('/', (req, res) =>
 
 
 app.get('/getCollection', (req,res) => {
+	if (req.query.token != null)
+	{
 	admin.auth().verifyIdToken(req.query.token)
 		.then(function(decodedToken) {
 			let uid = decodedToken.uid;
@@ -49,10 +51,17 @@ console.log(dbString);
 }).catch(function(error) {
  res.json("Token Unverified");
 });
+}
+else {
+	{
+		res.json("Missing Token");
+	}
+}
 });
 
 app.get('/getDocument', (req,res) => {
-
+	if (req.query.token != null)
+	{
 	admin.auth().verifyIdToken(req.query.token)
 	  .then(function(decodedToken) {
 	    let uid = decodedToken.uid;
@@ -75,7 +84,10 @@ app.get('/getDocument', (req,res) => {
 	}).catch(function(error) {
 	 res.json("Token Unverified");
 });
-
+}
+else {
+	res.json("Missing Token");
+}
 });
 
 
