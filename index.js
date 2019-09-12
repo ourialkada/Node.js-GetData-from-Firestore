@@ -49,12 +49,12 @@ console.log(dbString);
     console.log('Error getting documents', err);
   });
 }).catch(function(error) {
- res.json("Token Unverified");
+ res.json([{"status","Token Unverified"}]);
 });
 }
 else {
 	{
-		res.json("Missing Token");
+		res.json([{"status","Missing Token"}]);
 	}
 }
 });
@@ -82,11 +82,11 @@ app.get('/getDocument', (req,res) => {
     });
 
 	}).catch(function(error) {
-	 res.json("Token Unverified");
+	 	res.json([{"status","Token Unverified"}]);
 });
 }
 else {
-	res.json("Missing Token");
+		res.json([{"status","Missing Token"}]);
 }
 });
 
