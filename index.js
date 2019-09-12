@@ -79,16 +79,16 @@ app.get('/getDocument', (req,res) => {
     })
     .catch(err => {
 
-				res.json([{"status":"No Document Found"}]);
+				res.json({"status":"No Document Found"});
     });
 
 	}).catch(function(error) {
 
-	 	res.json([{"status":"Token Unverified"},{"OK":"NO"}]);
+	 	res.json({"status":"Token Unverified"});
 });
 }
 else {
-		res.json([{"status":"Missing Token"},{"OK":"NO"}]);
+		res.json({"status":"Missing Token"});
 }
 });
 
