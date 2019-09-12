@@ -4,7 +4,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 const path = require('path')
-var serviceAccount = require("Your Firebase json file");
+var serviceAccount = require("./assets/firebase.json");
 
 	const admin = require("firebase-admin");
 
@@ -12,7 +12,7 @@ global.array = [];
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "YOUR DB URL",
+  databaseURL: "https://jsos-apparel.firebaseio.com/",
 
 });
 
@@ -26,7 +26,9 @@ app.get('/', (req, res) =>
 
 
 app.get('/getCollection', (req,res) => {
-
+	admin.auth().verifyIdToken(req.query.token)
+		.then(function(decodedToken) {
+			let uid = decodedToken.uid;
   var dbString = 'JsosShirts/' + req.query.type + '/AllShirts/';
 console.log(dbString);
 
@@ -44,11 +46,17 @@ console.log(dbString);
   .catch((err) => {
     console.log('Error getting documents', err);
   });
-
+}).catch(function(error) {
+ res.json("Token Unverified");
+});
 });
 
 app.get('/getDocument', (req,res) => {
 
+	admin.auth().verifyIdToken(req.query.token)
+	  .then(function(decodedToken) {
+	    let uid = decodedToken.uid;
+	    // ...
   let document = db.collection("JsosShirts").doc(req.query.type).collection( '/AllShirts/').doc(req.query.id);
   let getDoc = document.get()
     .then(doc => {
@@ -60,8 +68,13 @@ app.get('/getDocument', (req,res) => {
       }
     })
     .catch(err => {
-      console.log('Error getting document', err);
+
+			res.json("No Document Found");
     });
+
+	}).catch(function(error) {
+	 res.json("Token Unverified");
+});
 
 });
 
