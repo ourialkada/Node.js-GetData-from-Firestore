@@ -12,7 +12,7 @@ global.array = [];
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://jsos-apparel.firebaseio.com/",
+  databaseURL: "your databaseURL",
 
 });
 
