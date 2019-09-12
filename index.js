@@ -50,12 +50,12 @@ console.log(dbString);
 			res.json([{"status":"No Documnet Found "}]);
   });
 }).catch(function(error) {
- res.json([{"status":"Token Unverified"}]);
+ res.json([{"status":"Token Unverified"},{"OK":"NO"}]);
 });
 }
 else {
 	{
-		res.json([{"status":"Missing Token"}]);
+		res.json([{"status":"Missing Token"},{"OK":"NO"}]);
 	}
 }
 });
@@ -84,11 +84,11 @@ app.get('/getDocument', (req,res) => {
 
 	}).catch(function(error) {
 
-	 	res.json([{"status":"Token Unverified"}]);
+	 	res.json([{"status":"Token Unverified"},{"OK":"NO"}]);
 });
 }
 else {
-		res.json([{"status":"Missing Token"}]);
+		res.json([{"status":"Missing Token"},{"OK":"NO"}]);
 }
 });
 
